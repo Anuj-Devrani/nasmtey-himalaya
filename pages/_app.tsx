@@ -8,6 +8,19 @@ import * as gtag from '../lib/gtag'
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.scss'
 
+import { Comfortaa, Roboto_Slab } from '@next/font/google'
+
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+const comfortaa = Comfortaa({
+  subsets: ['latin'],
+})
+
+const robotoslab = Roboto_Slab({
+  subsets: ['latin'],
+})
+
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter()
 
@@ -26,6 +39,14 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <>
+      <style jsx global>
+        {`
+          :root {
+            --comfortaa-font: ${comfortaa.style.fontFamily};
+            --roboto-slab-font: ${robotoslab.style.fontFamily};
+          }
+        `}
+      </style>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
