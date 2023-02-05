@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
-const Navbar = () => {
+import logo from '../../public/logo-no-background.svg'
+
+const Navbar = ({ isFixed }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -14,14 +16,18 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed top-0 flex w-full justify-center transition duration-500 ease-in-out z-50 ${
-        isScrolled ? 'bg-white text-black' : 'bg-transparent text-white'
-      }`}
+      className={
+        isFixed
+          ? 'fixed top-0 z-50 flex w-full justify-center bg-white shadow-xl'
+          : `fixed top-0 z-50 flex w-full justify-center transition duration-500 ease-in-out ${
+              isScrolled ? 'bg-white text-black' : 'bg-transparent text-white'
+            }`
+      }
     >
       <div className="navbar max-w-7xl">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn-ghost btn lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -71,7 +77,13 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn-ghost btn text-xl normal-case">
+            {isScrolled || isFixed ? (
+              <img src={logo.src} alt="logo" className="w-36" />
+            ) : (
+              <img src={logo.src} alt="logo" className="w-36" />
+            )}
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-comfortaa font-bold">

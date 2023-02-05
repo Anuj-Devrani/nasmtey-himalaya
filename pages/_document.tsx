@@ -41,6 +41,27 @@ class MyDocument extends Document {
               />
             </>
           )}
+          <>
+            {
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `window.tiledeskSettings=
+                        {
+                        projectid: "63de08a7e0b3fe0012ef16a0"
+                        };
+                        (function(d, s, id) {
+                          var w=window; var d=document; var i=function(){i.c(arguments);};
+                          i.q=[]; i.c=function(args){i.q.push(args);}; w.Tiledesk=i;
+                          var js, fjs=d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js=d.createElement(s); 
+                          js.id=id; js.async=true; js.src="https://widget.tiledesk.com/v5/launch.js";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document,'script','tiledesk-jssdk'));`,
+                }}
+              />
+            }
+          </>
         </Head>
         <body>
           <Main />

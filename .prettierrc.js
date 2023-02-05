@@ -3,7 +3,8 @@
  **/
 const config = {
   singleQuote: true,
-  semi: false
+  semi: false,
+  plugins: [require('prettier-plugin-tailwindcss')],
 }
 
 module.exports = config

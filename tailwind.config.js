@@ -11,9 +11,19 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'main-white-bg': '#FEFCFB',
+      },
+      backgroundSize: {
+        32: '8rem',
+        48: '12rem',
+        64: '16rem',
+        112: '28rem',
+      },
       fontFamily: {
         comfortaa: ['var(--comfortaa-font)', ...fontFamily.sans],
         robotoslab: ['var(--roboto-slab-font)', ...fontFamily.serif],
+        quattrocentosans: ['var(--quattrocento-sans-font)', ...fontFamily.sans],
       },
       transitionDelay: {
         0: '0ms',
