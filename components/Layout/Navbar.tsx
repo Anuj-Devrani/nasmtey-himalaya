@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
 import logo from '../../public/logo-no-background.svg'
+import Link from 'next/link'
 
 const Navbar = ({ isFixed }) => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -88,7 +89,7 @@ const Navbar = ({ isFixed }) => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-comfortaa font-bold">
             <li>
-              <a href="/">Home</a>
+              <Link href="/">Home</Link>
             </li>
             {/* <li>
               <a>Trips</a>

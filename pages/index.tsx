@@ -31,7 +31,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
   const topDestinationRef = useRef(null)
-  console.log(treks)
   return (
     <Layout navbarFixed={false}>
       <NextSeo

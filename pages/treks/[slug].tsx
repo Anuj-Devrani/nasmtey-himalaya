@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { useRouter } from 'next/router'
-import trekData from '../../json/trekData.json'
 import { NextSeo } from 'next-seo'
 import Layout from '../../components/Layout/MainLayout'
 import ImageGallery from '../../components/ImageGallery'
 import Icon from '@mdi/react'
-import { mdiCalendarBlankMultiple, mdiChevronRight } from '@mdi/js'
+import { mdiCalendarBlankMultiple } from '@mdi/js'
 import { mdiMapMarkerDistance } from '@mdi/js'
 import { mdiEmoticon } from '@mdi/js'
 import { mdiMapMarker } from '@mdi/js'
@@ -21,9 +19,7 @@ interface Props {
   treks: INameFields[]
 }
 
-export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
-  ctx
-) => {
+export const getStaticProps = async (ctx) => {
   const { slug } = ctx.params!
   const trek = await ContentService.instance.getTrekBySlug(slug)
 
@@ -42,8 +38,10 @@ const itineraryOptions = {
   renderNode: {
     [BLOCKS.UL_LIST]: (node, children) => (
       <ul className="steps steps-vertical mt-4">
-        {children.map((child) => (
-          <li className="step-primary step">{child}</li>
+        {children.map((child, index) => (
+          <li className="step-primary step" key={index}>
+            {child}
+          </li>
         ))}
       </ul>
     ),
@@ -54,8 +52,10 @@ const ulOptions = {
   renderNode: {
     [BLOCKS.UL_LIST]: (node, children) => (
       <ul className="list-disc">
-        {children.map((child) => (
-          <li className="mt-4">{child}</li>
+        {children.map((child, index) => (
+          <li className="mt-4" key={index}>
+            {child}
+          </li>
         ))}
       </ul>
     ),
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 //   },
 // }
 
-const TrekPage: NextPage<Props> = ({
+const TrekPage = ({
   trek: {
     name,
     overview,
@@ -408,7 +408,7 @@ const TrekPage: NextPage<Props> = ({
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
-                        class="h-7 w-7"
+                        className="h-7 w-7"
                         style={{ color: '#128c7e' }}
                       >
                         <path
@@ -455,7 +455,7 @@ const TrekPage: NextPage<Props> = ({
                       ></input>
                       <div className="mt-4 text-center">
                         <button className="btn-primary btn" type="submit">
-                          Let's Talk
+                          Let&lsquo;s Talk
                         </button>
                       </div>
                     </form>

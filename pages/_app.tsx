@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'

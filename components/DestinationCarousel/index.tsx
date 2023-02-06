@@ -5,7 +5,6 @@ const DestinationCarousel = ({ children }) => {
   const [slider, setSlider] = useState(null)
 
   const carouselChildren = Children.toArray(children)
-  console.log(carouselChildren)
 
   const next = () => {
     slider.slickNext()
