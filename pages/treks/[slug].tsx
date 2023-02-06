@@ -11,10 +11,97 @@ import { mdiEmoticon } from '@mdi/js'
 import { mdiMapMarker } from '@mdi/js'
 import clsx from 'clsx'
 import FAQ from '../../components/Faq'
+import ContentService from '../../utils/content-service'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { INameFields } from '../../@types/contentful'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { BLOCKS } from '@contentful/rich-text-types'
 
-const TrekPage = () => {
-  const router = useRouter()
-  const { name } = router.query
+interface Props {
+  treks: INameFields[]
+}
+
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async (
+  ctx
+) => {
+  const { slug } = ctx.params!
+  const trek = await ContentService.instance.getTrekBySlug(slug)
+
+  if (!trek) {
+    return { notFound: true }
+  }
+
+  return {
+    props: {
+      trek: trek.fields,
+    },
+  }
+}
+
+const itineraryOptions = {
+  renderNode: {
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul className="steps steps-vertical mt-4">
+        {children.map((child) => (
+          <li className="step-primary step">{child}</li>
+        ))}
+      </ul>
+    ),
+  },
+}
+
+const ulOptions = {
+  renderNode: {
+    [BLOCKS.UL_LIST]: (node, children) => (
+      <ul className="list-disc">
+        {children.map((child) => (
+          <li className="mt-4">{child}</li>
+        ))}
+      </ul>
+    ),
+  },
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const treks = await ContentService.instance.getEntriesByType<INameFields>(
+    'name'
+  )
+
+  return {
+    paths: treks.map((trek) => ({
+      params: {
+        slug: trek.fields.trekId,
+      },
+    })),
+    fallback: false,
+  }
+}
+
+// const options = {
+//   renderNode: {
+//     [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+//   },
+// }
+
+const TrekPage: NextPage<Props> = ({
+  trek: {
+    name,
+    overview,
+    highlights,
+    price,
+    trekDuration,
+    location,
+    bestTime,
+    difficulty,
+    distance,
+    shortItinerary,
+    includes,
+    excludes,
+    faq,
+  },
+}) => {
+  // const router = useRouter()
+  // const { name } = router.query
 
   const [tabActive, setTabActive] = useState('highlights')
 
@@ -31,16 +118,14 @@ const TrekPage = () => {
       />
       <div className="flex w-full flex-col items-center justify-center">
         <div className="mt-28 w-full max-w-7xl justify-center p-4">
-          <h1 className="font-comfortaa text-4xl font-semibold">
-            {trekData?.[name]?.name}
-          </h1>
+          <h1 className="font-comfortaa text-4xl font-semibold">{name}</h1>
           <div className="mt-4 flex flex-col md:flex-row">
             <div className="basis-2/3">
               <ImageGallery />
               <div className="mt-16 flex w-full flex-col">
                 <h1 className="font-comfortaa text-6xl">Overview</h1>
                 <p className="mt-4 font-robotoslab text-lg leading-8">
-                  {trekData?.[name]?.overview}
+                  {overview}
                 </p>
               </div>
               <div className="mt-4 flex w-full flex-col">
@@ -99,7 +184,7 @@ const TrekPage = () => {
                     <h1 className="font-robotoslab text-4xl font-semibold">
                       Highlights
                     </h1>
-                    {trekData?.[name]?.trekHighlights.map((item) => {
+                    {/* {trekData?.[name]?.trekHighlights.map((item) => {
                       // eslint-disable-next-line react/jsx-key
                       return (
                         <div className="mt-4 flex text-lg">
@@ -108,7 +193,10 @@ const TrekPage = () => {
                           <span>{item}</span>
                         </div>
                       )
-                    })}
+                    })} */}
+                    <div className="p-4">
+                      {documentToReactComponents(highlights, ulOptions)}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-8" id="itinerary">
@@ -116,11 +204,17 @@ const TrekPage = () => {
                     <h1 className="font-robotoslab text-4xl font-semibold">
                       Short Itinerary
                     </h1>
-                    <ul className="steps steps-vertical mt-4">
+                    {/* <ul className="steps steps-vertical mt-4">
                       {trekData?.[name]?.shortItinerary.map((item) => {
-                        return <li className="step-primary step">{item}</li>
+                        return
                       })}
-                    </ul>
+                    </ul> */}
+                    <div className="p-4">
+                      {documentToReactComponents(
+                        shortItinerary,
+                        itineraryOptions
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-8" id="includes-excludes">
@@ -128,18 +222,9 @@ const TrekPage = () => {
                     <h1 className="font-robotoslab text-4xl font-semibold">
                       Includes
                     </h1>
-                    <ul className="steps steps-vertical mt-4">
-                      {trekData?.[name]?.includes.map((item) => {
-                        // eslint-disable-next-line react/jsx-key
-                        return (
-                          <div className="mt-2 flex text-lg">
-                            {' '}
-                            <Icon path={mdiChevronRight} size={1} />
-                            <span>{item}</span>
-                          </div>
-                        )
-                      })}
-                    </ul>
+                    <div className="p-4">
+                      {documentToReactComponents(includes, ulOptions)}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-8">
@@ -147,18 +232,9 @@ const TrekPage = () => {
                     <h1 className="font-robotoslab text-4xl font-semibold">
                       Excludes
                     </h1>
-                    <ul className="steps steps-vertical mt-4">
-                      {trekData?.[name]?.excludes.map((item) => {
-                        // eslint-disable-next-line react/jsx-key
-                        return (
-                          <div className="mt-2 flex text-lg">
-                            {' '}
-                            <Icon path={mdiChevronRight} size={1} />
-                            <span>{item}</span>
-                          </div>
-                        )
-                      })}
-                    </ul>
+                    <div className="p-4">
+                      {documentToReactComponents(excludes, ulOptions)}
+                    </div>
                   </div>
                 </div>
                 <div className="mt-8" id="highlights">
@@ -262,7 +338,7 @@ const TrekPage = () => {
                   </div>
                 </div>
                 <div className="mt-8" id="faq">
-                  <FAQ faqList={trekData?.[name]?.faq} />
+                  <FAQ faqList={faq} />
                 </div>
               </div>
             </div>
@@ -273,9 +349,7 @@ const TrekPage = () => {
                     Starting from
                   </h2>
                   <p>
-                    <span className="text-xl text-rose-600">
-                      ₹{trekData?.[name]?.priceStarting}
-                    </span>
+                    <span className="text-xl text-rose-600">₹{price}</span>
                     <span className="text-xs"> +5% GST</span>
                   </p>
                   <div className="divider"></div>
@@ -286,9 +360,7 @@ const TrekPage = () => {
                         size={1}
                         className="text-primary"
                       />
-                      <span className="ml-2">
-                        {trekData?.[name]?.days} Days
-                      </span>
+                      <span className="ml-2">{trekDuration} Days</span>
                     </div>
                     <div className="badge-outline badge badge-lg mt-2 mr-2 p-4">
                       <Icon
@@ -296,7 +368,7 @@ const TrekPage = () => {
                         path={mdiMapMarkerDistance}
                         size={1}
                       />
-                      <span className="ml-2">{trekData?.[name]?.distance}</span>
+                      <span className="ml-2">{distance}</span>
                     </div>
                     <div className="badge-outline badge badge-lg mt-2 mr-2 p-4">
                       <Icon
@@ -304,9 +376,7 @@ const TrekPage = () => {
                         path={mdiEmoticon}
                         size={1}
                       />
-                      <span className="ml-2">
-                        {trekData?.[name]?.difficulty}
-                      </span>
+                      <span className="ml-2">{difficulty}</span>
                     </div>
                     <div className="badge-outline badge badge-lg mt-2 mr-2 p-4">
                       <Icon
@@ -314,14 +384,14 @@ const TrekPage = () => {
                         path={mdiMapMarker}
                         size={1}
                       />
-                      <span className="ml-2">{trekData?.[name]?.location}</span>
+                      <span className="ml-2">{location}</span>
                     </div>
                   </div>
                   <div className="divider"></div>
                   <div>
                     <p>
                       <span className="font-bold">Best Season:</span>
-                      <span className="ml-2">{trekData?.[name]?.bestTime}</span>
+                      <span className="ml-2">{bestTime}</span>
                     </p>
                   </div>
                 </div>

@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { Children, useState } from 'react'
 import Slider from 'react-slick'
 
 const DestinationCarousel = ({ children }) => {
   const [slider, setSlider] = useState(null)
+
+  const carouselChildren = Children.toArray(children)
+  console.log(carouselChildren)
 
   const next = () => {
     slider.slickNext()
@@ -14,11 +17,12 @@ const DestinationCarousel = ({ children }) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: children.length > 3,
     // speed: 500,
     // fade: false,
     slidesToShow: 3,
     slidesToScroll: 1,
+    initialSlide: 1,
     // centerPadding: 0,
     responsive: [
       {
@@ -34,7 +38,7 @@ const DestinationCarousel = ({ children }) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          initialSlide: 2,
+          initialSlide: 1,
         },
       },
       {
@@ -50,8 +54,12 @@ const DestinationCarousel = ({ children }) => {
     <div className="mt-8 md:mt-16">
       <div>
         <Slider ref={(c) => setSlider(c)} {...settings}>
-          {children.map((child) => {
-            return <div className="p-4">{child}</div>
+          {Children.map(carouselChildren, (child, index) => {
+            return (
+              <div className="p-4" key={index}>
+                {child}
+              </div>
+            )
           })}
         </Slider>
 

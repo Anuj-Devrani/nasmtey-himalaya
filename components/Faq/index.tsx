@@ -18,7 +18,7 @@ const FAQ = ({ faqList }) => {
           </h2>
           <div className="-m-1 mb-11 flex flex-wrap">
             {faqList &&
-              faqList.map((item) => {
+              faqList?.map((item) => {
                 return (
                   <div className="w-full p-1">
                     {/* <a>
@@ -71,12 +71,14 @@ const FAQ = ({ faqList }) => {
         </div>
         <div className="text-center font-medium text-gray-600">
           <div>Still have any questions?</div>
-          <a
+          <button
             className="font-semibold text-indigo-600 hover:text-indigo-700"
-            href="#"
+            onClick={() => {
+              window.Tiledesk('open')
+            }}
           >
             Contact us
-          </a>
+          </button>
         </div>
       </div>
     </section>

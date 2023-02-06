@@ -5,7 +5,7 @@ import DestinationCarousel from './DestinationCarousel'
 import trekkingTent from '../public/trekking-tent.png'
 import temple from '../public/temple.png'
 
-const DestinationSection = () => {
+const DestinationSection = ({ treks }) => {
   return (
     <div>
       <div
@@ -28,35 +28,22 @@ const DestinationSection = () => {
           </h1>
           <div>
             <DestinationCarousel>
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
+              {treks.map((trek) => (
+                <DestinationCard
+                  key={trek.id}
+                  slug={`treks/${trek.trekId}`}
+                  img={main}
+                  price={trek.price}
+                  name={trek.name}
+                  subHeading={trek.location}
+                />
+              ))}
+              {/* {treks.map((trek) => console.log(trek))} */}
             </DestinationCarousel>
           </div>
         </div>
       </div>
-      <div
+      {/* <div
         className="flex w-full justify-center bg-main-white-bg bg-32 md:bg-64"
         style={{
           backgroundColor: '#F9FAFE',
@@ -102,7 +89,7 @@ const DestinationSection = () => {
             </DestinationCarousel>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

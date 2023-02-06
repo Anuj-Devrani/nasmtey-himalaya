@@ -7,14 +7,36 @@ import { useRef } from 'react'
 import separator from '../public/seprator.png'
 import PopupVideoPlayer from '../components/PopupVideoPlayer'
 import FeatureSection from '../components/FeatureSection'
+import { INameFields } from '../@types/contentful'
+import { GetStaticProps } from 'next'
+import ContentService from '../utils/content-service'
 
-const Home: React.FC = () => {
+interface Props {
+  treks: INameFields[]
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const treks = (
+    await ContentService.instance.getTrekIds<INameFields>('name')
+  ).map((entry) => {
+    return { ...entry.fields, ...entry.sys }
+  })
+
+  return {
+    props: {
+      treks,
+    },
+  }
+}
+
+const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
   const topDestinationRef = useRef(null)
+  console.log(treks)
   return (
     <Layout navbarFixed={false}>
       <NextSeo
-        title="NextSSS"
-        description="Next.js Static Site Starter"
+        title="Namastey Himalaya"
+        description="Travel Website"
         openGraph={{
           type: 'website',
         }}
@@ -32,7 +54,7 @@ const Home: React.FC = () => {
         }}
       ></div>
       <div ref={topDestinationRef}>
-        <DestinationSection />
+        <DestinationSection treks={treks} />
       </div>
       <FeatureSection />
     </Layout>

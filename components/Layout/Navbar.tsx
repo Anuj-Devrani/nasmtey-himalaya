@@ -88,14 +88,14 @@ const Navbar = ({ isFixed }) => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-comfortaa font-bold">
             <li>
-              <a>Home</a>
+              <a href="/">Home</a>
             </li>
-            <li>
+            {/* <li>
               <a>Trips</a>
             </li>
             <li>
               <a>Tours</a>
-            </li>
+            </li> */}
             <li>
               <a>Treks</a>
             </li>
@@ -103,7 +103,9 @@ const Navbar = ({ isFixed }) => {
               <a>About Us</a>
             </li>
             <li>
-              <a>Contact Us</a>
+              <button onClick={() => window.Tiledesk('open')}>
+                Contact Us
+              </button>
             </li>
           </ul>
         </div>
