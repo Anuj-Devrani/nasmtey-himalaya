@@ -10,6 +10,8 @@ import FeatureSection from '../components/FeatureSection'
 import { INameFields } from '../@types/contentful'
 import { GetStaticProps } from 'next'
 import ContentService from '../utils/content-service'
+import Testimonials from '../components/Testimonials'
+import HeroCarousel from '../components/HeroCarousel'
 
 interface Props {
   treks: INameFields[]
@@ -40,7 +42,8 @@ const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
           type: 'website',
         }}
       />
-      <Hero topDestRef={topDestinationRef} />
+      {/* <Hero topDestRef={topDestinationRef} /> */}
+      <HeroCarousel topDestRef={topDestinationRef} />
       <div
         className="relative h-64 w-full"
         style={{
@@ -48,14 +51,15 @@ const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100%',
           backgroundPosition: 'center',
-          margin: '-78px 0 -60px',
+          margin: '-70px 0 -60px',
           height: '128px',
         }}
       ></div>
-      <div ref={topDestinationRef}>
+      <div ref={topDestinationRef} id="treks">
         <DestinationSection treks={treks} />
       </div>
       <FeatureSection />
+      <Testimonials />
     </Layout>
   )
 }

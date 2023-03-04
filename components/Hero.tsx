@@ -1,6 +1,6 @@
 import React from 'react'
 import hero from '../public/mountain-small.png'
-import landing from '../public/Mount1.png'
+import landing from '../public/about-us.jpg'
 import PopupVideoPlayer from './PopupVideoPlayer'
 
 const Hero = ({ topDestRef }) => {
@@ -21,15 +21,15 @@ const Hero = ({ topDestRef }) => {
           <h1 className="font-comfortaa text-3xl font-semibold leading-10 text-white md:text-8xl">
             Explore <br /> our world <br />
           </h1>
-          <h1 className="mt-4 font-robotoslab text-xl font-light text-white md:mt-12 md:text-5xl">
+          <h1 className="mt-4 font-robotoslab text-xl font-light text-white md:mt-12 md:text-6xl">
             {/* One <span className="text-primary">Trek</span> at a Time
              */}
             Our world is full of beautiful places <br /> and unknowns to the
-            end. Join us to enjoy these moments
+            end. <br /> Join us to enjoy these moments
           </h1>
-          <div className="mt-4 flex justify-center">
+          {/* <div className="mt-4 flex justify-center">
             <PopupVideoPlayer />
-          </div>
+          </div> */}
 
           <button
             className="btn-secondary btn mt-12 hover:scale-105"

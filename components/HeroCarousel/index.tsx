@@ -1,7 +1,38 @@
 import React, { useState } from 'react'
 import Slider from 'react-slick'
+import landing from '../../public/hero/about-us.jpg'
+import hero_1 from '../../public/hero/hero_1.jpg'
+import hero_2 from '../../public/hero/hero_2.jpg'
+import hero_3 from '../../public/hero/hero_3.jpg'
+import hero_4 from '../../public/hero/hero_4.jpg'
+import hero_5 from '../../public/hero/hero_5.jpg'
 
-export default function HeroCarousel() {
+const HeroText = ({ topDestRef }) => {
+  const executeScroll = () =>
+    topDestRef.current.scrollIntoView({ block: 'start' })
+
+  return (
+    <div className="flex items-center py-32 text-center md:py-60">
+      <div className="flex-1">
+        <h1 className="font-comfortaa text-2xl font-semibold leading-10 text-white md:text-6xl">
+          Wonder Wander Repeat
+        </h1>
+        <h1 className="mt-4 font-robotoslab text-xl font-light text-white md:mt-12 md:text-6xl">
+          Our world is full of beautiful places <br /> and unknowns to the end.{' '}
+          <br /> Join us to enjoy these moments
+        </h1>
+        <button
+          className="btn-secondary btn mt-12 hover:scale-105"
+          onClick={executeScroll}
+        >
+          Explore top destinations
+        </button>
+      </div>
+    </div>
+  )
+}
+
+const HeroCarousel = ({ topDestRef }) => {
   const [slider, setSlider] = useState(null)
 
   const next = () => {
@@ -15,92 +46,38 @@ export default function HeroCarousel() {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
-    fade: false,
+    fade: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
-    centerPadding: '50px',
-    // centerMode: true,
+    autoplay: true,
+    speed: 800,
+    autoplaySpeed: 4000,
+    pauseOnHover: false,
+    // cssEase: 'linear',
   }
 
-  return (
-    <div className="flex flex-col">
-      <div style={{ width: '400px' }}>
-        <Slider ref={(c) => setSlider(c)} {...settings}>
-          <div style={{ width: 100 }} className="pl-2">
-            <div
-              className="rounded-3xl"
-              style={{
-                backgroundImage:
-                  'url("https://picsum.photos/400/600?random=1")',
-                backgroundSize: 'cover',
-                width: '100%',
-                height: '600px',
-              }}
-            ></div>
-          </div>
-          <div style={{ width: 100 }} className="pl-2">
-            <div
-              className="rounded-3xl"
-              style={{
-                backgroundImage:
-                  'url("https://picsum.photos/400/600?random=2")',
-                backgroundSize: 'cover',
-                width: '100%',
-                height: '600px',
-              }}
-            ></div>
-          </div>
-          <div style={{ width: 100 }} className="pl-2">
-            <div
-              className="rounded-3xl"
-              style={{
-                backgroundImage:
-                  'url("https://picsum.photos/400/600?random=3")',
-                backgroundSize: 'cover',
-                width: '100%',
-                height: '600px',
-              }}
-            ></div>
-          </div>
-        </Slider>
+  const images = [hero_1.src, hero_2.src, hero_3.src, hero_4.src, landing.src]
 
-        <div className="flex justify-center">
-          <button
-            onClick={prev}
-            className=" m-6 p-3 rounded-full bg-white hover:bg-gray-200 focus:outline-none focus:shadow-outline"
-          >
-            <svg
-              className="w-5 h-5 text-gray-600"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+  return (
+    <div className="">
+      <Slider ref={(c) => setSlider(c)} {...settings}>
+        {images.map((img) => (
+          <div className="flex justify-center bg-center" key={img}>
+            <div
+              style={{
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url(${img})`,
+                backgroundSize: 'cover',
+                // backgroundRepeat: 'no-repeat',
+                // backgroundPosition: 'bottom 40% right -5%',
+              }}
             >
-              <path d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            className=" m-6 p-3 rounded-full bg-white hover:bg-gray-200 focus:outline-none focus:shadow-outline"
-          >
-            <svg
-              className="w-5 h-5 text-gray-600"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M9 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+              <HeroText topDestRef={topDestRef} />
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   )
 }
+
+export default HeroCarousel

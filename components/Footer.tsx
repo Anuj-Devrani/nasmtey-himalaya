@@ -13,8 +13,22 @@ const Footer: React.FC = () => {
           </div>
           <div>
             <span className="footer-title">Social</span>
-            <a className="link-hover link">Instagram</a>
-            <a className="link-hover link">Facebook</a>
+            <a
+              href="https://instagram.com/namastey_himalaya?igshid=ZDdkNTZiNTM="
+              className="link-hover link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.facebook.com/namasteyhimalaya77?mibextid=ZbWKwL"
+              className="link-hover link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Facebook
+            </a>
           </div>
         </footer>
         <div className="flex justify-center font-comfortaa text-lg font-semibold text-white">

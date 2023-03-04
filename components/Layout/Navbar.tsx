@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
 
-import logo from '../../public/logo-no-background.svg'
+import logo from '../../public/new-logo.jpeg'
 import Link from 'next/link'
 
 const Navbar = ({ isFixed }) => {
@@ -48,9 +48,6 @@ const Navbar = ({ isFixed }) => {
               tabIndex={0}
               className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 text-black shadow"
             >
-              <li>
-                <a>Item</a>
-              </li>
               {/* <li tabIndex={0}>
               <a className="justify-between">
                 Parent
@@ -74,16 +71,23 @@ const Navbar = ({ isFixed }) => {
               </ul>
             </li> */}
               <li>
-                <a>Item 3</a>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/#treks">Treks</Link>
+              </li>
+              <li>
+                <Link href="/about">About Us</Link>
+              </li>
+              <li>
+                <button onClick={() => window.Tiledesk('open')}>
+                  Contact Us
+                </button>
               </li>
             </ul>
           </div>
           <a className="btn-ghost btn text-xl normal-case">
-            {isScrolled || isFixed ? (
-              <img src={logo.src} alt="logo" className="w-36" />
-            ) : (
-              <img src={logo.src} alt="logo" className="w-36" />
-            )}
+            {isScrolled && <img src={logo.src} alt="logo" className="w-24" />}
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -91,17 +95,11 @@ const Navbar = ({ isFixed }) => {
             <li>
               <Link href="/">Home</Link>
             </li>
-            {/* <li>
-              <a>Trips</a>
+            <li>
+              <Link href="/#treks">Treks</Link>
             </li>
             <li>
-              <a>Tours</a>
-            </li> */}
-            <li>
-              <a>Treks</a>
-            </li>
-            <li>
-              <a>About Us</a>
+              <Link href="/about">About Us</Link>
             </li>
             <li>
               <button onClick={() => window.Tiledesk('open')}>

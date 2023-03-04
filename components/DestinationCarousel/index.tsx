@@ -17,12 +17,9 @@ const DestinationCarousel = ({ children }) => {
   const settings = {
     dots: false,
     infinite: children.length > 3,
-    // speed: 500,
-    // fade: false,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 1,
-    // centerPadding: 0,
     responsive: [
       {
         breakpoint: 1024,
