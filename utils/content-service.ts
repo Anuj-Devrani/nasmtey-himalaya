@@ -32,7 +32,8 @@ export default class ContentService {
     return (
       await this.client.getEntries<T>({
         content_type: type,
-        select: 'sys.id,fields.trekId,fields.price,fields.name,fields.location',
+        select:
+          'sys.id,fields.trekId,fields.price,fields.name,fields.location,fields.trekCoverImage',
       })
     ).items
   }

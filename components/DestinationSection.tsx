@@ -32,7 +32,7 @@ const DestinationSection = ({ treks }) => {
                 <DestinationCard
                   key={trek.id}
                   slug={`treks/${trek.trekId}`}
-                  img={main}
+                  img={trek.trekCoverImage}
                   price={trek.price}
                   name={trek.name}
                   subHeading={trek.location}

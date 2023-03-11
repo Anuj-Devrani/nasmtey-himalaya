@@ -48,6 +48,12 @@ export interface INameFields {
 
   /** faq */
   faq?: Record<string, any> | undefined
+
+  /** Trek Cover Image */
+  trekCoverImage?: string | undefined
+
+  /** Treks Carousel Images */
+  treksCarouselImages?: Record<string, any> | undefined
 }
 
 export interface IName extends Entry<INameFields> {

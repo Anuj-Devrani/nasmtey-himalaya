@@ -5,13 +5,13 @@ const DestinationCard = ({ img, slug, price, name, subHeading }) => {
   return (
     <Link href={slug}>
       <div
-        className="max-w-xs cursor-pointer rounded-3xl transition duration-150 ease-in hover:scale-105"
+        className="w-64 cursor-pointer rounded-3xl transition duration-150 ease-in hover:scale-105 md:w-80"
         style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)' }}
       >
         <div
-          className="h-96 rounded-3xl p-4"
+          className="h-80 rounded-3xl p-4 md:h-96"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%), url(${img.src})`,
+            backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%), url(${img})`,
             backgroundSize: 'cover',
           }}
         >
@@ -23,15 +23,15 @@ const DestinationCard = ({ img, slug, price, name, subHeading }) => {
             </div>
 
             <div className="mt-auto rounded-lg bg-white py-4 px-6">
-              <h1 className="font-robotoslab text-2xl font-semibold">
-                {subHeading}
+              <h1 className="font-robotoslab text-xl font-semibold md:text-2xl">
+                {name}
               </h1>
 
               <h1
                 className="mt-2 font-robotoslab text-base font-normal"
                 style={{ color: '#666666' }}
               >
-                {name}
+                {subHeading}
               </h1>
             </div>
           </div>

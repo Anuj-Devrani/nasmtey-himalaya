@@ -16,7 +16,9 @@ const DestinationCarousel = ({ children }) => {
 
   const settings = {
     dots: false,
-    infinite: children.length > 3,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 1,
@@ -27,6 +29,8 @@ const DestinationCarousel = ({ children }) => {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
+          autoplay: true,
+          autoplaySpeed: 2000,
         },
       },
       {
@@ -35,6 +39,7 @@ const DestinationCarousel = ({ children }) => {
           slidesToShow: 3,
           slidesToScroll: 1,
           initialSlide: 1,
+          infinite: true,
         },
       },
       {
@@ -42,6 +47,7 @@ const DestinationCarousel = ({ children }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         },
       },
     ],
