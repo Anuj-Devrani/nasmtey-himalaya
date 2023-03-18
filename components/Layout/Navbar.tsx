@@ -19,7 +19,7 @@ const Navbar = ({ isFixed }) => {
     <div
       className={
         isFixed
-          ? 'fixed top-0 z-50 flex w-full justify-center bg-white shadow-xl'
+          ? 'fixed top-0 z-50 flex w-full justify-center bg-white'
           : `fixed top-0 z-50 flex w-full justify-center transition duration-500 ease-in-out ${
               isScrolled ? 'bg-white text-black' : 'bg-transparent text-white'
             }`
