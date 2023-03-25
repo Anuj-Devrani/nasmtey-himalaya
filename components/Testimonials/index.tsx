@@ -22,7 +22,7 @@ const Testimonials = () => {
             </div>
             <div className="-mx-3 items-start md:flex">
               <div className="px-3 md:w-1/3">
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img
@@ -52,7 +52,7 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img
@@ -83,7 +83,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <div className="px-3 md:w-1/3">
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img
@@ -113,7 +113,7 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img
@@ -147,7 +147,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <div className="px-3 md:w-1/3">
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img
@@ -177,7 +177,7 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800">
+                <div className="mx-auto mb-6 w-full rounded-lg border border-gray-200 bg-white p-5 font-light text-gray-800 hover:scale-110 cursor-pointer">
                   <div className="mb-4 flex w-full items-center">
                     <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 bg-gray-50">
                       <img

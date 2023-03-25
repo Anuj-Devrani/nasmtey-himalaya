@@ -5,7 +5,7 @@ import DestinationCarousel from './DestinationCarousel'
 import trekkingTent from '../public/trekking-tent.png'
 import temple from '../public/temple.png'
 
-const DestinationSection = ({ treks }) => {
+const DestinationSection = ({ treks, tours }) => {
   return (
     <div>
       <div
@@ -43,8 +43,8 @@ const DestinationSection = ({ treks }) => {
           </div>
         </div>
       </div>
-      {/* <div
-        className="flex w-full justify-center bg-main-white-bg bg-32 md:bg-64"
+      <div
+        className="flex w-full justify-center bg-48 md:bg-112"
         style={{
           backgroundColor: '#F9FAFE',
           backgroundImage: `url(${temple.src})`,
@@ -62,34 +62,20 @@ const DestinationSection = ({ treks }) => {
           </h1>
           <div>
             <DestinationCarousel>
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
-              <DestinationCard
-                img={main}
-                price={100}
-                name={'Auli'}
-                subHeading={'Uttarakhand'}
-              />
+            {tours.map((tour) => (
+                <DestinationCard
+                  key={tour.id}
+                  slug={`tours/${tour.dhamId}`}
+                  img={tour.coverImage}
+                  price={tour.price}
+                  name={tour.name}
+                  subHeading={tour.location}
+                />
+              ))}
             </DestinationCarousel>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import { useRef } from 'react'
 import separator from '../public/seprator.png'
 import PopupVideoPlayer from '../components/PopupVideoPlayer'
 import FeatureSection from '../components/FeatureSection'
-import { INameFields } from '../@types/contentful'
+import { IDhamFields, INameFields } from '../@types/contentful'
 import { GetStaticProps } from 'next'
 import ContentService from '../utils/content-service'
 import Testimonials from '../components/Testimonials'
@@ -24,14 +24,21 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     return { ...entry.fields, ...entry.sys }
   })
 
+  const tours = (
+    await ContentService.instance.getTourIds<INameFields>()
+  ).map((entry) => {
+    return { ...entry.fields, ...entry.sys }
+  })
+
   return {
     props: {
       treks,
+      tours,
     },
   }
 }
 
-const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
+const Home: React.FC = ({ treks, tours }: { treks: INameFields[], tours: IDhamFields[] }) => {
   const topDestinationRef = useRef(null)
   return (
     <Layout navbarFixed={false}>
@@ -56,7 +63,7 @@ const Home: React.FC = ({ treks }: { treks: INameFields[] }) => {
         }}
       ></div>
       <div ref={topDestinationRef} id="treks">
-        <DestinationSection treks={treks} />
+        <DestinationSection treks={treks} tours={tours}/>
       </div>
       <FeatureSection />
       <Testimonials />

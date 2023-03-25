@@ -1,6 +1,6 @@
 import { createClient } from 'contentful'
 import { config } from 'dotenv'
-import { INameFields } from '../@types/contentful'
+import { IDhamFields, INameFields } from '../@types/contentful'
 
 /*
  * We tell TypeScript that those environment variables are always defined.
@@ -38,6 +38,16 @@ export default class ContentService {
     ).items
   }
 
+  async getTourIds<T>() {
+    return (
+      await this.client.getEntries<T>({
+        content_type: 'dham',
+        select:
+          'sys.id,fields.dhamId,fields.price,fields.name,fields.location,fields.coverImage',
+      })
+    ).items
+  }
+
   async getEntriesByType<T>(type: string) {
     return (
       await this.client.getEntries<T>({
@@ -54,6 +64,14 @@ export default class ContentService {
       await this.client.getEntries<INameFields>({
         content_type: 'name',
         'fields.trekId': slug,
+      })
+    ).items[0]
+  }
+  async getTourBySlug(slug: string) {
+    return (
+      await this.client.getEntries<IDhamFields>({
+        content_type: 'dham',
+        'fields.dhamId': slug,
       })
     ).items[0]
   }

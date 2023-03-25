@@ -3,7 +3,7 @@ import React from 'react'
 
 const DestinationCard = ({ img, slug, price, name, subHeading }) => {
   return (
-    <Link href={slug}>
+    <Link href={slug} className="flex justify-center">
       <div
         className="w-64 cursor-pointer rounded-3xl transition duration-150 ease-in hover:scale-105 md:w-80"
         style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)' }}

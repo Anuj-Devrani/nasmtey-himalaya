@@ -3,6 +3,73 @@
 import { Asset, Entry } from 'contentful'
 import { Document } from '@contentful/rich-text-types'
 
+export interface IDhamFields {
+  /** Dham Id */
+  dhamId: string
+
+  /** Name */
+  name: string
+
+  /** Season Type */
+  seasonType?: string | undefined
+
+  /** Duration */
+  duration: string
+
+  /** Location */
+  location: string
+
+  /** Best Time */
+  bestTime: string
+
+  /** Distance */
+  distance: string
+
+  /** Price */
+  price: number
+
+  /** Overview */
+  overview: string
+
+  /** Highlights */
+  highlights: Document
+
+  /** Short Itinerary */
+  shortItinerary: Document
+
+  /** Includes */
+  includes: Document
+
+  /** Excludes */
+  excludes?: Document | undefined
+
+  /** faq */
+  faq?: Record<string, any> | undefined
+
+  /** Cover Image */
+  coverImage?: string | undefined
+
+  /** Carousel Images */
+  carouselImages?: Record<string, any> | undefined
+}
+
+export interface IDham extends Entry<IDhamFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'dham'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export interface INameFields {
   /** Trek Id */
   trekId: string
@@ -73,9 +140,9 @@ export interface IName extends Entry<INameFields> {
   }
 }
 
-export type CONTENT_TYPE = 'name'
+export type CONTENT_TYPE = 'dham' | 'name'
 
-export type IEntry = IName
+export type IEntry = IDham | IName
 
 export type LOCALE_CODE = 'en-US'
 
