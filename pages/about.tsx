@@ -74,7 +74,7 @@ const About: React.FC = () => {
               </div>
             </div>
           </section>
-          <div className="mt-12 p-4 font-robotoslab md:text-2xl">
+          <div className="my-12 p-4 font-robotoslab md:text-2xl">
             &ldquo; Founded in 2017 as a humble trekking company, we have since
             evolved into a multifaceted Adventure Service Provider. Our roots in
             Uttarakhand allow us to foster our mission of delivering exceptional

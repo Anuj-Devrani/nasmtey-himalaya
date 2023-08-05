@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             </a>
           </div>
         </footer>
-        <div className="flex justify-center font-comfortaa text-lg font-semibold text-white">
+        {/* <div className="flex justify-center font-comfortaa text-lg font-semibold text-white">
           Made with{' '}
           <Icon
             path={mdiHeart}
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
             spin
           />
           in Uttarakhand
-        </div>
+        </div> */}
       </div>
     </div>
   )
